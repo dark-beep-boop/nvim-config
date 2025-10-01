@@ -1,3 +1,5 @@
+-- Adapt keymaps to Dvorak Keyboard
+
 return {
   {
     "folke/flash.nvim",
@@ -5,6 +7,7 @@ return {
     vscode = true,
     ---@type Flash.Config
     keys = {
+      -- l and L instead of s and S
       {
         "l",
         mode = { "n", "x", "o" },
