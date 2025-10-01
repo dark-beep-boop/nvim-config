@@ -9,6 +9,7 @@ return {
         ["n"] = "'k'",
         ["S"] = "open_vsplit",
         ["<M-S>"] = "open_vsplit",
+        ["H"] = "toggle_hidden",
         ["l"] = "none",
         ["j"] = "open_tabnew",
       },

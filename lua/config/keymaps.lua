@@ -22,6 +22,7 @@ map("n", "<C-s>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Move Lines
 unmap("n", "<M-j>")
+unmap("n", "<M-k>")
 unmap("i", "<M-j>")
 unmap("i", "<M-k>")
 unmap("v", "<M-j>")
@@ -34,8 +35,8 @@ map("v", "<M-t>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc 
 map("v", "<M-n>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- Move cursor up and down in multitext
-map("n", "gj", "")
-map("n", "gk", "")
+map("n", "gj", "none")
+map("n", "gk", "none")
 map("n", "gt", "'gj'", { desc = "Move cursor down in multiline text" })
 map("n", "gn", "'gk'", { desc = "Move cursor up in multiline text" })
 
@@ -45,7 +46,7 @@ map("n", "<S-s>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 -- Move between searches with k
-vim.keymap.del({ "x", "o" }, "N")
+unmap({ "n", "x", "o" }, "N")
 map("n", "k", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 map("o", "k", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
@@ -56,33 +57,14 @@ map("o", "K", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 -- Save file with l
 map({ "i", "x", "n", "s" }, "<C-l>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- Jump to character
-map({ "n", "x", "o" }, "j", "'t'", { desc = "Jump to before the next occurrence of a character", silent = true })
-map({ "n", "x", "o" }, "J", "'T'", { desc = "Jump to after the previous occurrence of a character", silent = true })
-
 -- Go to file edited before tag jump
 map(
   { "n", "x", "o" },
   "<C-j>",
   "'<C-t>'",
-  { desc = "Go to the file you wehe editing before the last tag jump", silent = true }
+  { desc = "Go to the file you were editing before the last tag jump", silent = true }
 )
-
--- Move down
-map({ "n", "x", "o" }, "<C-k>", "'<C-n>'", { desc = "move down one line", silent = true })
 
 -- Delete and substitute
 map("n", "l", "'s'", { desc = "Delete character and substitute text", silent = true })
 map("n", "L", "'S'", { desc = "Delete line and substitute text", silent = true })
-
--- Join lines
-map({ "n", "x", "o" }, "T", "'J'", { desc = "Join current line with the next one with space", silent = true })
-map({ "n", "x", "o" }, "gT", "'gJ'", { desc = "Join current line with the next one without space", silent = true })
-
--- Hover
-map("n", "N", function()
-  return vim.lsp.buf.hover()
-end, { desc = "Hover", silent = true })
-
--- Move to the bottom of the screen
-map("n", "S", "'L'", { desc = "Move to the bottom of the screen", silent = true })
