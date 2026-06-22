@@ -9,15 +9,22 @@ return {
   opts = {
     window = {
       mappings = {
-        ["s"] = "open",
         ["h"] = "close_node",
         ["t"] = "none",
         ["n"] = "none",
+        ["s"] = "focus_preview",
         ["V"] = "open_vsplit",
         ["S"] = "open_split",
         ["H"] = "toggle_hidden",
         ["l"] = "none",
         ["j"] = "open_tabnew",
+      },
+    },
+    filesystem = {
+      window = {
+        mappings = {
+          ["<C-s>"] = "none",
+        },
       },
     },
   },
